@@ -14,6 +14,23 @@ if __name__ == "__main__":
         if(int_type == "INVALID"):
             user_in = input(input_msg)
             continue
-
-
         
+        elif(int_type == "decimal"):
+            print(f"Decimal: {user_in}")
+            print(f"Binary: {calcs.dec_to_bin(user_in)}")
+            print(f"Hexadecimal: {calcs.dec_to_hex(user_in)}")
+            user_in = input(input_msg)
+
+        elif(int_type == "binary"):
+            user_in = calcs.bin_to_dec(user_in)
+            print(f"Decimal: {user_in}")
+            print(f"Binary: {calcs.dec_to_bin(user_in)}")
+            print(f"Hexadecimal: {calcs.dec_to_hex(user_in)}")
+            user_in = input(input_msg)
+
+        elif(int_type == "hexadecimal"):
+            user_in = calcs.hex_to_dec(user_in)
+            print(f"Decimal: {user_in}")
+            print(f"Binary: {calcs.dec_to_bin(user_in)}")
+            print(f"Hexadecimal: {calcs.dec_to_hex(user_in)}")
+            user_in = input(input_msg)

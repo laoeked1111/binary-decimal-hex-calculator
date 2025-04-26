@@ -105,26 +105,101 @@ def dec_to_bin(num):
 
 
 def hex_to_dec(num):
-    pass
+    """
+    Convert from hexadecimal to decimal.
+
+    Args:
+        num: str, represents a hexadecimal number
+
+    Ret:
+        ret: int, represents a decimal number
+    """
+
+    assert get_type(num) == "hexadecimal", AssertionError("Not a valid hexadecimal integer!")
+    num = num[2:]
+
+    CONVERT = {'a': 10, 'b': 11, 'c': 12, 'd': 13, 'e': 14, 'f': 15}
+
+    ret = 0
+    i = 0
+
+    while num != "":
+        if num[-1] in CONVERT:
+            ret += (16 ** i) * CONVERT[num[-1]]
+        else:
+            ret += (16 ** i) * int(num[-1], 16)
+
+        i += 1
+        num = num[:-1]
+
+    return str(ret)
 
 
 
 def dec_to_hex(num):
-    pass
+    """
+    Convert from decimal to hexadecimal.
 
+    Args:
+        num: str, represents a decimal number
+
+    Ret:
+        ret: int, represents a hexadecimal number
+    """
+
+    assert get_type(num) == "decimal", AssertionError("Not a valid decimal integer!")
+    num = int(num)
+
+    CONVERT = {10: 'a', 11: 'b', 12: 'c', 13: 'd', 14: 'e', 15: 'f'}
+
+    ret = ""
+
+    while num > 0:
+        if num % 16 in CONVERT:
+            ret += CONVERT[num % 16]
+        else:
+            ret += str(num % 16)
+
+        num //= 16
+
+    return "0x" + ret[::-1]
 
 
 
 def hex_to_bin(num):
-    pass
+    """
+    Convert from hexadecimal to binary.
 
+    Args:
+        num: str, represents a hexadecimal number
+
+    Ret:
+        ret: int, represents a binary number
+    """
+
+    assert get_type(num) == "hexadecimal", AssertionError("Not a valid hexadecimal integer!")
+    num = hex_to_dec(num)
+
+    return dec_to_bin(num)
 
 
 
 def bin_to_hex(num):
-    pass
+    """
+    Convert from binary to hexadecimal.
 
+    Args:
+        num: str, represents a binary number
+
+    Ret:
+        ret: int, represents a hexadecimal number
+    """
+
+    assert get_type(num) == "binary", AssertionError("Not a valid binary integer!")
+    num = bin_to_dec(num)
+
+    return dec_to_hex(num)
 
 
 if __name__ == "__main__":
-    print(dec_to_bin("1"))
+    pass

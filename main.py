@@ -4,7 +4,7 @@ import calcs
 if __name__ == "__main__":
     print('Welcome to this binary/decimal/hex calculator! Enter Q to quit anytime.')
 
-    input_msg = "Enter a positive integer. Use the prefix 0b for binary, 0x for hexadecimal, and no prefix for decimal: "
+    input_msg = "------------------------\nEnter an integer. Use the prefix 0b for binary, 0x for hexadecimal, and no prefix for decimal: "
     user_in = input(input_msg)
 
     while(user_in not in ["q", "Q"]):
@@ -16,21 +16,74 @@ if __name__ == "__main__":
             continue
         
         elif(int_type == "decimal"):
-            print(f"Decimal: {user_in}")
-            print(f"Binary: {calcs.dec_to_bin(user_in)}")
-            print(f"Hexadecimal: {calcs.dec_to_hex(user_in)}")
-            user_in = input(input_msg)
+
+            isSigned = input("Unsigned or signed? (u/s): ")
+
+            if isSigned == "s" or isSigned == "S":
+                print(f"\nDecimal: {user_in}")
+                print(f"Signed binary: {calcs.signed_dec_to_bin(user_in)}")
+                print(f"Signed hexadecimal: {calcs.signed_dec_to_hex(user_in)}")
+                user_in = input(input_msg)
+                continue
+            elif isSigned == "u" or isSigned == "U":
+
+                if(int(user_in) < 0):
+                    print("Unsigned integers must be non-negative.")
+                    user_in = input(input_msg)
+                    continue
+
+                print(f"\nDecimal: {user_in}")
+                print(f"Unsigned binary: {calcs.unsigned_dec_to_bin(user_in)}")
+                print(f"Unsigned hexadecimal: {calcs.unsigned_dec_to_hex(user_in)}")
+                user_in = input(input_msg)
+                continue
+            else:
+                print("Invalid input.")
+                user_in = input(input_msg)
+                continue
 
         elif(int_type == "binary"):
-            user_in = calcs.bin_to_dec(user_in)
-            print(f"Decimal: {user_in}")
-            print(f"Binary: {calcs.dec_to_bin(user_in)}")
-            print(f"Hexadecimal: {calcs.dec_to_hex(user_in)}")
-            user_in = input(input_msg)
+
+            isSigned = input("Unsigned or signed? (u/s): ")
+
+            if isSigned == "s" or isSigned == "S":
+                print(f"\nDecimal: {calcs.signed_bin_to_dec(user_in)}")
+                print(f"Signed binary: {user_in}")
+                print(f"Signed hexadecimal: {calcs.signed_bin_to_hex(user_in)}")
+                user_in = input(input_msg)
+                continue
+            elif isSigned == "u" or isSigned == "U":
+                temp = calcs.unsigned_bin_to_dec(user_in)
+                print(f"\nDecimal: {temp}")
+                print(f"Unsigned binary: {user_in}")
+                print(f"Unsigned hexadecimal: {calcs.unsigned_bin_to_hex(user_in)}")
+                user_in = input(input_msg)
+                continue
+            else:
+                print("Invalid input.")
+                user_in = input(input_msg)
+                continue
 
         elif(int_type == "hexadecimal"):
-            user_in = calcs.hex_to_dec(user_in)
-            print(f"Decimal: {user_in}")
-            print(f"Binary: {calcs.dec_to_bin(user_in)}")
-            print(f"Hexadecimal: {calcs.dec_to_hex(user_in)}")
-            user_in = input(input_msg)
+
+            isSigned = input("Unsigned or signed? (u/s): ")
+
+            if isSigned == "s" or isSigned == "S":
+                temp = calcs.signed_hex_to_dec(user_in)
+                print(f"\nDecimal: {temp}")
+                print(f"Signed binary: {calcs.signed_hex_to_bin(user_in)}")
+                print(f"Signed hexadecimal: {user_in}")
+                user_in = input(input_msg)
+                continue
+            elif isSigned == "u" or isSigned == "U":
+                temp = calcs.unsigned_hex_to_dec(user_in)
+                print(f"\nDecimal: {temp}")
+                print(f"Unsigned binary: {calcs.unsigned_hex_to_bin(user_in)}")
+                print(f"Unsigned hexadecimal: {user_in}")
+                user_in = input(input_msg)
+                continue
+            else:
+                print("Invalid input.")
+                user_in = input(input_msg)
+                continue
+
